@@ -1,0 +1,59 @@
+0 verbose cli /Users/NUMTEMA/.nvm/versions/node/v24.5.0/bin/node /Users/NUMTEMA/.nvm/versions/node/v24.5.0/bin/npm
+1 info using npm@11.5.1
+2 info using node@v24.5.0
+3 silly config load:file:/Users/NUMTEMA/.nvm/versions/node/v24.5.0/lib/node_modules/npm/npmrc
+4 silly config load:file:/Users/NUMTEMA/Downloads/yemplate/fortify_auth_multiple_guard/app_front/.npmrc
+5 silly config load:file:/Users/NUMTEMA/.npmrc
+6 silly config load:file:/Users/NUMTEMA/.nvm/versions/node/v24.5.0/etc/npmrc
+7 verbose title npm outdated
+8 verbose argv "outdated" "--json"
+9 verbose logfile logs-max:10 dir:/Users/NUMTEMA/Downloads/yemplate/fortify_auth_multiple_guard/app_front/.npm-cache/_logs/2026-06-04T18_28_45_422Z-
+10 verbose logfile /Users/NUMTEMA/Downloads/yemplate/fortify_auth_multiple_guard/app_front/.npm-cache/_logs/2026-06-04T18_28_45_422Z-debug-0.log
+11 silly logfile done cleaning log files
+12 silly packumentCache heap:4496293888 maxSize:1124073472 maxEntrySize:562036736
+13 verbose shrinkwrap failed to load node_modules/.package-lock.json out of date, updated: node_modules
+14 http fetch GET 200 https://registry.npmjs.org/class-variance-authority 267ms (cache revalidated)
+15 http fetch GET 200 https://registry.npmjs.org/clsx 270ms (cache revalidated)
+16 http fetch GET 200 https://registry.npmjs.org/axios 272ms (cache revalidated)
+17 http fetch GET 200 https://registry.npmjs.org/react-hook-form 278ms (cache revalidated)
+18 http fetch GET 200 https://registry.npmjs.org/@tanstack%2freact-devtools 317ms (cache revalidated)
+19 http fetch GET 200 https://registry.npmjs.org/framer-motion 326ms (cache revalidated)
+20 http fetch GET 200 https://registry.npmjs.org/@tanstack%2freact-table 354ms (cache revalidated)
+21 http fetch GET 200 https://registry.npmjs.org/lucide-react 375ms (cache revalidated)
+22 http fetch GET 200 https://registry.npmjs.org/@hookform%2fresolvers 396ms (cache revalidated)
+23 http fetch GET 200 https://registry.npmjs.org/react 402ms (cache revalidated)
+24 http fetch GET 200 https://registry.npmjs.org/@tanstack%2freact-router-devtools 436ms (cache revalidated)
+25 http fetch GET 200 https://registry.npmjs.org/@tanstack%2freact-query 445ms (cache revalidated)
+26 http fetch GET 200 https://registry.npmjs.org/@tanstack%2freact-router 453ms (cache revalidated)
+27 http fetch GET 200 https://registry.npmjs.org/@tanstack%2fdevtools-vite 458ms (cache revalidated)
+28 http fetch GET 200 https://registry.npmjs.org/react-dom 469ms (cache revalidated)
+29 http fetch GET 200 https://registry.npmjs.org/tailwindcss 496ms (cache revalidated)
+30 http fetch GET 200 https://registry.npmjs.org/@tailwindcss%2fvite 543ms (cache revalidated)
+31 http fetch GET 200 https://registry.npmjs.org/zustand 563ms (cache revalidated)
+32 http fetch GET 200 https://registry.npmjs.org/tailwind-merge 568ms (cache revalidated)
+33 http fetch GET 200 https://registry.npmjs.org/radix-ui 577ms (cache revalidated)
+34 http fetch GET 200 https://registry.npmjs.org/recharts 583ms (cache revalidated)
+35 http fetch GET 200 https://registry.npmjs.org/@types%2freact-dom 592ms (cache revalidated)
+36 http fetch GET 200 https://registry.npmjs.org/jsdom 594ms (cache revalidated)
+37 http fetch GET 200 https://registry.npmjs.org/@testing-library%2freact 605ms (cache revalidated)
+38 http fetch GET 200 https://registry.npmjs.org/@types%2fnode 613ms (cache revalidated)
+39 http fetch GET 200 https://registry.npmjs.org/@types%2freact 644ms (cache revalidated)
+40 http fetch GET 200 https://registry.npmjs.org/@tanstack%2frouter-plugin 657ms (cache revalidated)
+41 http fetch GET 200 https://registry.npmjs.org/@base-ui%2freact 700ms (cache revalidated)
+42 http fetch GET 200 https://registry.npmjs.org/tw-animate-css 686ms (cache revalidated)
+43 http fetch GET 200 https://registry.npmjs.org/@vitejs%2fplugin-react 691ms (cache revalidated)
+44 http fetch GET 200 https://registry.npmjs.org/cmdk 702ms (cache revalidated)
+45 http fetch GET 200 https://registry.npmjs.org/shadcn 696ms (cache revalidated)
+46 http fetch GET 200 https://registry.npmjs.org/@lottiefiles%2fdotlottie-react 715ms (cache revalidated)
+47 http fetch GET 200 https://registry.npmjs.org/goey-toast 711ms (cache revalidated)
+48 http fetch GET 200 https://registry.npmjs.org/vite-tsconfig-paths 703ms (cache revalidated)
+49 http fetch GET 200 https://registry.npmjs.org/vitest 708ms (cache revalidated)
+50 http fetch GET 200 https://registry.npmjs.org/vite 727ms (cache revalidated)
+51 http fetch GET 200 https://registry.npmjs.org/typescript 773ms (cache revalidated)
+52 http fetch GET 200 https://registry.npmjs.org/@testing-library%2fdom 869ms (cache revalidated)
+53 verbose cwd /Users/NUMTEMA/Downloads/yemplate/fortify_auth_multiple_guard/app_front
+54 verbose os Darwin 22.6.0
+55 verbose node v24.5.0
+56 verbose npm  v11.5.1
+57 verbose exit 1
+58 verbose code 1

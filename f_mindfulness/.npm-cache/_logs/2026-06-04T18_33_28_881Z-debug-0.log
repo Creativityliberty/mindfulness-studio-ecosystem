@@ -1,0 +1,33 @@
+0 verbose cli /Users/NUMTEMA/.nvm/versions/node/v24.5.0/bin/node /Users/NUMTEMA/.nvm/versions/node/v24.5.0/bin/npm
+1 info using npm@11.5.1
+2 info using node@v24.5.0
+3 silly config load:file:/Users/NUMTEMA/.nvm/versions/node/v24.5.0/lib/node_modules/npm/npmrc
+4 silly config load:file:/Users/NUMTEMA/Downloads/yemplate/f_mindfulness/.npmrc
+5 silly config load:file:/Users/NUMTEMA/.npmrc
+6 silly config load:file:/Users/NUMTEMA/.nvm/versions/node/v24.5.0/etc/npmrc
+7 verbose title npm outdated
+8 verbose argv "outdated" "--json"
+9 verbose logfile logs-max:10 dir:/Users/NUMTEMA/Downloads/yemplate/f_mindfulness/.npm-cache/_logs/2026-06-04T18_33_28_881Z-
+10 verbose logfile /Users/NUMTEMA/Downloads/yemplate/f_mindfulness/.npm-cache/_logs/2026-06-04T18_33_28_881Z-debug-0.log
+11 silly logfile done cleaning log files
+12 silly packumentCache heap:4496293888 maxSize:1124073472 maxEntrySize:562036736
+13 http fetch GET 200 https://registry.npmjs.org/class-variance-authority 495ms (cache revalidated)
+14 http fetch GET 200 https://registry.npmjs.org/@radix-ui%2freact-accordion 531ms (cache revalidated)
+15 http fetch GET 200 https://registry.npmjs.org/@tanstack%2freact-query-devtools 528ms (cache revalidated)
+16 http fetch GET 200 https://registry.npmjs.org/vite-tsconfig-paths 534ms (cache revalidated)
+17 http fetch GET 200 https://registry.npmjs.org/@radix-ui%2freact-avatar 596ms (cache revalidated)
+18 http fetch GET 200 https://registry.npmjs.org/lucide-react 601ms (cache revalidated)
+19 http fetch GET 200 https://registry.npmjs.org/nitro-nightly 651ms (cache revalidated)
+20 http fetch GET 200 https://registry.npmjs.org/@tanstack%2freact-devtools 700ms (cache revalidated)
+21 http fetch GET 200 https://registry.npmjs.org/@tanstack%2freact-router 706ms (cache revalidated)
+22 http fetch GET 200 https://registry.npmjs.org/@tanstack%2freact-query 740ms (cache revalidated)
+23 http fetch GET 200 https://registry.npmjs.org/@radix-ui%2freact-dropdown-menu 771ms (cache revalidated)
+24 http fetch GET 200 https://registry.npmjs.org/@tailwindcss%2fvite 763ms (cache revalidated)
+25 http fetch GET 200 https://registry.npmjs.org/@tanstack%2frouter-plugin 765ms (cache revalidated)
+26 http fetch GET 200 https://registry.npmjs.org/react 785ms (cache revalidated)
+27 http fetch GET 200 https://registry.npmjs.org/tailwindcss 824ms (cache revalidated)
+28 http fetch GET 200 https://registry.npmjs.org/tailwind-merge 885ms (cache revalidated)
+29 http fetch GET 200 https://registry.npmjs.org/next 964ms (cache revalidated)
+30 http fetch GET 200 https://registry.npmjs.org/motion 1940ms (cache revalidated)
+31 http fetch GET 200 https://registry.npmjs.org/framer-motion 1958ms (cache revalidated)
+32 http fetch GET 200 https://registry.npmjs.org/typescript 2082ms (cache revalidated)

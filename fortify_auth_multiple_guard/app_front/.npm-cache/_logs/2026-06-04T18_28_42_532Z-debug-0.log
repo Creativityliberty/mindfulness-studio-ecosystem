@@ -1,0 +1,18 @@
+0 verbose cli /Users/NUMTEMA/.nvm/versions/node/v24.5.0/bin/node /Users/NUMTEMA/.nvm/versions/node/v24.5.0/lib/node_modules/npm/bin/npm-cli.js
+1 info using npm@11.5.1
+2 info using node@v24.5.0
+3 silly config load:file:/Users/NUMTEMA/.nvm/versions/node/v24.5.0/lib/node_modules/npm/npmrc
+4 silly config load:file:/Users/NUMTEMA/Downloads/yemplate/fortify_auth_multiple_guard/app_front/.npmrc
+5 silly config load:file:/Users/NUMTEMA/.npmrc
+6 silly config load:file:/Users/NUMTEMA/.nvm/versions/node/v24.5.0/etc/npmrc
+7 verbose title npm exec vite dev --port 3001
+8 verbose argv "exec" "--" "vite" "dev" "--port" "3001"
+9 verbose logfile logs-max:10 dir:/Users/NUMTEMA/Downloads/yemplate/fortify_auth_multiple_guard/app_front/.npm-cache/_logs/2026-06-04T18_28_42_532Z-
+10 verbose logfile /Users/NUMTEMA/Downloads/yemplate/fortify_auth_multiple_guard/app_front/.npm-cache/_logs/2026-06-04T18_28_42_532Z-debug-0.log
+11 silly logfile done cleaning log files
+12 verbose cwd /Users/NUMTEMA/Downloads/yemplate/fortify_auth_multiple_guard/app_front
+13 verbose os Darwin 22.6.0
+14 verbose node v24.5.0
+15 verbose npm  v11.5.1
+16 verbose exit 1
+17 verbose code 1

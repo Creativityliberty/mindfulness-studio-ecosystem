@@ -1,0 +1,73 @@
+Le vrai problème                                                                                
+                                                                                                    Ton architecture actuelle est role-based — chaque rôle a son propre dossier dans le code :                                                                                                          _protected/                                                                                         admin/          ← dossier dans le code                                                            super-admin/    ← dossier dans le code                                                            teacher/        ← dossier dans le code                                                            student/        ← dossier dans le code                                                                                                                                                            Et dans types/role.ts les rôles sont écrits en dur :                                              ['super_admin', 'admin', 'teacher', 'student']                                                  
+
+  Donc si tu veux ajouter secretary ou stagiaire → tu dois créer un dossier, modifier le fichier  
+  de types, modifier le guard de route, modifier le redirect du login, modifier la navigation...  
+  c'est du code, pas de la config.
+
+  ---
+  Les 2 chemins possibles
+
+  Chemin 1 — Tu restes role-based (ce que t'as maintenant)
+
+  Tu ajoutes secretary comme un vrai rôle dans le code. Une seule fois, proprement.
+
+  _protected/
+    admin/
+    super-admin/
+    secretary/      ← tu crées ça
+    teacher/
+    student/
+
+  Avantage : Simple, cohérent avec ce que t'as déjà, rapide à faire.
+
+  Inconvénient : Si demain tu veux un stagiaire, un comptable, un directeur pédagogique → tu      
+  reviens dans le code à chaque fois.
+
+  Mais soyons honnêtes : pour un centre de langue, tu vas jamais avoir 15 rôles différents. T'as  
+  probablement 4-5 rôles max pour toujours. Ce chemin est raisonnable.
+
+  ---
+  Chemin 2 — Tu passes permission-based (le vrai dynamique)
+
+  Au lieu de dossiers par rôle, t'as une seule zone protégée et chaque page vérifie si
+  l'utilisateur a la permission d'y accéder.
+
+  _protected/
+    dashboard/          ← tout le monde ici
+    students/           ← si permission "view_students"
+    enrollments/        ← si permission "manage_enrollments"
+    payments/           ← si permission "manage_payments"
+    rooms/              ← si permission "manage_rooms"
+    groups/             ← si permission "manage_groups"
+
+  Le backend (Spatie que t'as déjà) retourne les permissions de l'utilisateur. Le frontend affiche
+   ou cache chaque section selon ces permissions.
+
+  Un stagiaire → tu lui donnes view_students + view_enrollments depuis le backend, sans toucher au
+   code frontend.
+
+  Avantage : Vraiment dynamique. Nouveau rôle → juste assigner des permissions dans la base.      
+
+  Inconvénient : Refactoring complet de ton architecture de routing actuelle. Ce n'est pas rien.  
+
+  ---
+  Mon avis pour ton cas
+
+  Pour un centre de langue avec des rôles stables et prévisibles — tu vas avoir :
+  - super-admin
+  - admin
+  - secrétaire
+  - prof
+  - étudiant
+
+  C'est tout. Le Chemin 1 est le bon choix. Tu ajoutes secretary une fois bien fait, et tu n'y    
+  reviens plus. Passer à une architecture permission-based pour ce cas c'est over-engineering.    
+
+  Le "stagiaire" que t'as mentionné — donne-lui le rôle teacher ou secretary selon ce qu'il fait. 
+  T'as pas besoin d'un rôle dédié pour chaque cas particulier.
+
+  ---
+  On fait quoi — on crée le rôle secretary proprement ?
+
+✻ Churned for 1m 45s        
