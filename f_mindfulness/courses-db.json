@@ -47,6 +47,24 @@
             "type": "pdf",
             "content": "Guide illustré des positions d'apposition des mains pour le traitement.",
             "resourceUrl": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
+          },
+          {
+            "title": "tutu",
+            "type": "text",
+            "content": "",
+            "id": "rejgoh3"
+          }
+        ]
+      },
+      {
+        "id": "hpl7bl9",
+        "title": "iloo",
+        "lessons": [
+          {
+            "title": "ghkkk",
+            "type": "audio",
+            "content": "h",
+            "id": "0g5rd5j"
           }
         ]
       }
@@ -219,7 +237,44 @@
     "instructorName": "Fabienne Dizy Olliveaud",
     "instructorTitle": "Formatrice & Praticienne Énergétique",
     "created_at": "2026-06-04T18:13:19.771Z",
-    "modules": []
+    "modules": [
+      {
+        "id": "e8abj73",
+        "title": "ckoi le. chakra",
+        "lessons": [
+          {
+            "title": "dyuyu",
+            "type": "video",
+            "content": "",
+            "resourceUrl": "https://www.youtube.com/watch?v=LnChbFTFPtM",
+            "id": "eqvl62q",
+            "quiz": {
+              "id": "eqvl62q",
+              "questions": [
+                {
+                  "id": "kj23adn",
+                  "question": "vhkkjjkNouvelle Question ?",
+                  "options": [
+                    "Option A",
+                    "Option B",
+                    "Option C",
+                    "Option D"
+                  ],
+                  "correctAnswer": 0
+                }
+              ]
+            }
+          },
+          {
+            "title": "joio",
+            "type": "video",
+            "content": "",
+            "resourceUrl": "https://www.youtube.com/watch?v=LnChbFTFPtM",
+            "id": "pzpwp2t"
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "plexus-solaire",
@@ -596,5 +651,23 @@
     "image": "https://images.unsplash.com/photo-1599599810769-bcde5a160d32?q=80&w=600&auto=format&fit=crop",
     "created_at": "2026-06-04T18:13:19.771Z",
     "modules": []
+  },
+  {
+    "category": "Initiations Énergétiques",
+    "duration": "1/2 journée",
+    "studentsCount": 0,
+    "rating": 5,
+    "instructorId": "3",
+    "instructorName": "Instructeur Demo",
+    "instructorTitle": "Instructeur Praticien",
+    "badge": "Nouveau",
+    "status": "brouillon",
+    "title": "n;n;",
+    "description": "kkjjllopoyy",
+    "level": "Débutant",
+    "price": 99,
+    "id": "5joz8ho",
+    "modules": [],
+    "created_at": "2026-06-04T20:25:54.749Z"
   }
 ]
