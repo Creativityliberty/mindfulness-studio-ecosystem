@@ -1,78 +1,126 @@
-# 🚀 DIRECTIVE D'INTÉGRATION PAS-À-PAS : DEVS BACKEND (LARAVEL)
+# 📖 DIRECTIVES PRAGMATIQUES POUR LES DÉVELOPPEURS LARAVEL (PAS-À-PAS)
 
-Ce document décrit les étapes précises à suivre pour connecter les frontends React/TypeScript aux backends Laravel du monorepo.
-
----
-
-## ÉTAPE 1 : Récupération du Code
-1. Clonez le dépôt principal de l'écosystème :
-   ```bash
-   git clone https://github.com/Creativityliberty/mindfulness-studio-ecosystem.git
-   cd mindfulness-studio-ecosystem
-   ```
-2. Installez les dépendances des frontends :
-   * **Vitrine (Port 3001)** : 
-     ```bash
-     cd f_mindfulness && npm install
-     ```
-   * **Dashboard (Port 3000)** : 
-     ```bash
-     cd f_starter_dashboard_role_template && npm install
-     ```
+Si vous ne connaissez pas le frontend (React/Zustand), pas de panique. Voici **les 3 seuls fichiers** du dossier `f_starter_dashboard_role_template` que vous devez ouvrir et modifier pour connecter vos API Laravel.
 
 ---
 
-## ÉTAPE 2 : Configuration des Backends Laravel
-1. Configurez les fichiers `.env` dans les dossiers backends :
-   * **`b_mindfulness`** (Vitrine)
-   * **`b_starter_dashboard_role_template`** (Dashboard Admin/Rôles)
-2. Dans le fichier `config/cors.php` des deux backends Laravel, autorisez explicitement les origines frontends :
-   ```php
-   'allowed_origins' => [
-       'http://localhost:3000', // Dashboard SPA
-       'http://localhost:3001', // Vitrine SSR
-   ],
-   'supports_credentials' => true,
-   ```
+## 🛠️ FICHIER 1 : L'URL de votre API Backend
+* **Chemin du fichier** : `f_starter_dashboard_role_template/src/lib/api.ts`
+* **Ce qu'il faut faire** : À la ligne 6, remplacez la valeur `baseURL` par l'URL locale de votre serveur Laravel :
+```typescript
+// Ligne 6
+const api = axios.create({
+  baseURL: 'http://localhost:8000/api', // ← METTEZ VOTRE URL LOCAL LARAVEL ICI
+  headers: {
+    'Content-Type': 'application/json',
+    Accept: 'application/json',
+  },
+  withCredentials: true,
+  withXSRFToken: true,
+})
+```
 
 ---
 
-## ÉTAPE 3 : Configuration d'Environnement des Frontends
-1. Dans le dossier `f_starter_dashboard_role_template/`, créez un fichier `.env` local :
-   ```env
-   VITE_API_URL=http://localhost:8000/api
-   ```
-   *(Remplacez par l'URL locale de votre serveur Laravel pour le dashboard)*
-2. Dans le dossier `f_mindfulness/`, créez un fichier `.env` local :
-   ```env
-   VITE_API_URL=http://localhost:8001/api
-   ```
-   *(Remplacez par l'URL locale de votre serveur Laravel pour la vitrine)*
+## 🛠️ FICHIER 2 : L'Authentification (Connexion, Inscription, Utilisateur)
+* **Chemin du fichier** : `f_starter_dashboard_role_template/src/services/auth-service.ts`
+* **Ce qu'il faut faire** : Actuellement, ce fichier utilise des fausses données simulées (Mocks). Vous devez remplacer les méthodes par des requêtes Axios réelles vers votre backend Laravel :
+
+### 1. Remplacer la fonction `login` (Ligne 52) :
+```typescript
+// Remplacez tout le contenu de la méthode login par :
+async login(credentials: LoginCredentials): Promise<LoginResponse> {
+  // 1. Obtenir le cookie CSRF (Sanctum)
+  await api.get('/csrf-cookie'); 
+  
+  // 2. Envoyer les identifiants
+  const response = await api.post('/login', credentials);
+  const user = response.data.user;
+  
+  // Sauvegarde locale de la session
+  localStorage.setItem('mock_user', JSON.stringify(user));
+  return {
+    two_factor: false,
+    user,
+  };
+}
+```
+
+### 2. Remplacer la fonction `getCurrentUser` (Ligne 99) :
+```typescript
+// Remplacez par un appel API qui récupère l'utilisateur connecté :
+async getCurrentUser(): Promise<User> {
+  const response = await api.get('/user');
+  const user = response.data;
+  localStorage.setItem('mock_user', JSON.stringify(user));
+  return user;
+}
+```
+
+### 3. Remplacer la fonction `logout` (Ligne 92) :
+```typescript
+// Remplacez par :
+async logout(): Promise<void> {
+  await api.post('/logout');
+  localStorage.removeItem('mock_user');
+}
+```
 
 ---
 
-## ÉTAPE 4 : Intégration de l'Authentification (Sanctum / Fortify)
-Le frontend stocke actuellement sa session utilisateur fictive dans `f_starter_dashboard_role_template/src/stores/auth-store.ts`.
-1. Modifiez la méthode `login` du store pour faire une requête `POST` vers l'endpoint de connexion Laravel (`/api/login`).
-2. À la connexion, récupérez le token Bearer renvoyé par Laravel Sanctum et stockez-le en session locale.
-3. Configurez les requêtes HTTP (via Axios/Fetch) pour inclure systématiquement le header :
-   ```javascript
-   Authorization: Bearer <votre_token>
-   ```
+## 🛠️ FICHIER 3 : Le Store des Cours (Syllabus, Modules, Leçons, Quiz)
+* **Chemin du fichier** : `f_starter_dashboard_role_template/src/stores/courses-store.ts`
+* **Ce qu'il faut faire** : Les actions de création et modification de cours sont gérées localement dans Zustand. Vous devez rediriger ces actions vers votre base de données via votre API.
+
+### 1. Création d'un cours (Ligne 729, fonction `addCourse`) :
+```typescript
+// Au lieu d'ajouter le cours dans le tableau local en mémoire, envoyez-le à Laravel :
+addCourse: async (course) => {
+  const response = await api.post('/courses', course);
+  const newCourse = response.data;
+  
+  // Optionnel : recharger les cours
+  get().fetchCourses(); 
+  
+  return newCourse.id; // Retourne l'UUID créé par Laravel
+}
+```
+
+### 2. Ajout de Module (Ligne 746, fonction `addModule`) :
+```typescript
+// Relier à une route POST /api/courses/{courseId}/modules
+addModule: async (courseId, title) => {
+  await api.post(`/courses/${courseId}/modules`, { title });
+  get().fetchCourses(); // Rafraîchit l'affichage
+}
+```
+
+### 3. Ajout de Leçon (Ligne 818, fonction `addLesson`) :
+```typescript
+// Relier à une route POST /api/courses/{courseId}/modules/{moduleId}/lessons
+addLesson: async (courseId, moduleId, lesson) => {
+  await api.post(`/courses/${courseId}/modules/${moduleId}/lessons`, lesson);
+  get().fetchCourses();
+}
+```
 
 ---
 
-## ÉTAPE 5 : Branchement du Studio Instructeur (Syllabus, Quiz, Ressources)
-Toute la logique du studio de création de cours de l'instructeur se trouve dans `f_starter_dashboard_role_template/src/stores/courses-store.ts`.
-Vous devez relier les actions de ce store à vos endpoints Laravel :
+## 🗄️ STRUCTURES SQL DE BASE (À créer dans Laravel)
+Pour que les frontends affichent tout correctement, vos tables de base de données doivent comporter ces colonnes :
 
-1. **Création / Édition de Cours (`addCourse`, `updateCourse`)** :
-   * Envoyer une requête HTTP `POST` ou `PUT` vers `/api/courses`.
-   * Veillez à ce que l'ID de l'instructeur connecté soit lié au cours côté backend. Si le cours ne possède pas l'ID de l'instructeur connecté, la vérification de propriété (`isOwner`) dans le fichier `courses.$courseId.tsx` affichera "Accès refusé".
-2. **Modules (`addModule`, `deleteModule`)** :
-   * Associer les requêtes de création et de suppression de modules aux tables de la base de données.
-3. **Leçons et Médias (`addLesson`, `updateLesson`, `deleteLesson`)** :
-   * Gérer l'envoi des URLs de ressources médias (Vidéo, PDF, Audio, Texte).
-   * L'onglet "Ressources média" du frontend lira automatiquement ces URLs pour afficher les lecteurs vidéos et audio intégrés.
-4. **Questionnaires (`saveQuiz`)** :
-   * L'action de sauvegarde envoie les questions sous forme de tableau JSON. Gérez la sauvegarde de cette structure dans votre table `quizzes` ou directement dans une colonne JSON de votre table `lessons`.
+1. **Table `users`** :
+   * `id`, `name`, `email`, `password`.
+   * `role` : Type VARCHAR (doit contenir `'admin'`, `'instructor'` ou `'client'`).
+   * `status` : Type VARCHAR (pour les instructeurs : `'en_attente'`, `'approuve'`, `'suspendu'`).
+
+2. **Table `courses`** :
+   * `id` (UUID recommandé), `title`, `description`, `price` (decimal), `level` (`'Débutant'`, `'Intermédiaire'`, `'Avancé'`).
+   * `instructor_id` (clé étrangère vers `users.id`).
+   * `status` (`'brouillon'`, `'publié'`).
+
+3. **Table `lessons`** :
+   * `id`, `module_id` (clé étrangère).
+   * `title`, `type` (`'video'`, `'pdf'`, `'audio'`, `'text'`).
+   * `resourceUrl` (VARCHAR pour stocker le lien vers Vimeo, Youtube, Cloudinary, S3...).
+   * `quiz` (colonne de type JSON pour stocker le tableau de questions du quiz).
