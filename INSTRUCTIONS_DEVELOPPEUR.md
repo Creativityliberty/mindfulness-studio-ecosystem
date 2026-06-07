@@ -2,30 +2,47 @@
 
 ---
 
-## 🔍 MAPPING DES DÉPÔTS GITHUB & LEUR BACKEND ASSOCIÉ
+## 📋 SYNTHÈSE DES DÉPÔTS GITHUB & BRANCHES
 
-Pour que tout soit parfaitement clair, voici comment associer les dépôts GitHub distants aux dossiers de code backend :
+Voici la structure exacte des dépôts Git mis en ligne pour ce projet :
 
-### 1. Le Dépôt `formationsession` (Dashboard Frontend)
-* **Qu'est-ce que c'est ?** C'est le frontend du Dashboard (l'espace membre, le studio de cours instructeur, et le panel admin).
-* **Son dossier de code local** : `f_starter_dashboard_role_template/`
-* **Son Backend associé** : **`b_starter_dashboard_role_template`** (le dossier local contenant l'API Laravel d'administration générale et de gestion multi-rôles).
+### 1. Le Dépôt Principal (Monorepo complet)
+* **Nom GitHub** : `mindfulness-studio-ecosystem`
+* **URL** : `https://github.com/Creativityliberty/mindfulness-studio-ecosystem.git`
+* **Branche** : **`main`**
+* **Contenu** : L'ensemble complet de l'écosystème physique (Vitrine, Dashboard avec studio instructeur avancé, 2 serveurs Laravel backends, démos d'auth, application mobile).
+* **Usage** : C'est le dépôt à cloner pour installer le projet complet en local.
 
-### 2. Le Dépôt `mindfulness-studio-ecosystem` (Monorepo global)
-Ce dépôt regroupe tous les projets sous une même structure. Voici les binômes Frontend ↔ Backend à l'intérieur :
-
-* **Binôme A (Le Dashboard applicatif)** :
-  * **Frontend** : `f_starter_dashboard_role_template/` (identique au dépôt `formationsession`)
-  * **Backend** : **`b_starter_dashboard_role_template/`** (API Laravel pour l'administration et les rôles)
-* **Binôme B (Le Site Vitrine)** :
-  * **Frontend** : `f_mindfulness/` (Landing page et vitrine)
-  * **Backend** : **`b_mindfulness/`** (API Laravel pour la vitrine publique)
+### 2. Le Dépôt Spécifique du Dashboard (Historique)
+* **Nom GitHub** : `formationsession`
+* **URL** : `https://github.com/Creativityliberty/formationsession.git`
+* **Branches** :
+  * **`main`** : Code de base stable du dashboard d'administration.
+  * **`dev-antigravity-studio`** : Version avancée avec toutes les modifications du studio instructeur ( syllabus, quiz, ressources média, etc.).
 
 ---
 
-## 🛠️ FICHIERS FRONTEND À CONFIUGURER & MODIFIER
+## 🔍 COMPRENDRE L'ARCHITECTURE : QUI FAIT QUOI ?
 
-Pour connecter le **Dashboard Frontend (`formationsession` / `f_starter_dashboard_role_template`)** à votre **Backend Laravel Admin (`b_starter_dashboard_role_template`)**, vous n'avez qu'à configurer/modifier ces 3 fichiers précis :
+Le projet est divisé en **2 sous-systèmes indépendants** (Vitrine d'un côté, Dashboard applicatif de l'autre). Chaque frontend a son propre backend Laravel associé :
+
+### 1. Le Système Vitrine (Marketing / Vente)
+* **Frontend (`f_mindfulness`)** :
+  * **Rôle** : Site vitrine public, Landing Page (Tourne sur le **Port 3001**). C'est là que les visiteurs découvrent les cours, s'inscrivent, postulent pour devenir praticien et contactent l'équipe.
+  * **Techno** : TanStack Start SSR (React).
+  * **Son Backend associé** : **`b_mindfulness`** (API Laravel gérant les cours publiés, le catalogue public et les formulaires).
+
+### 2. Le Système Dashboard (Espace Apprenant / Studio Instructeur / Administration)
+* **Frontend (`f_starter_dashboard_role_template` ou dépôt `formationsession`)** :
+  * **Rôle** : Plateforme applicative connectée (Tourne sur le **Port 3000**). Espace membre pour les clients, studio de création de cours pour les instructeurs, et panel de modération pour les administrateurs.
+  * **Techno** : SPA React + Vite + TanStack Router.
+  * **Son Backend associé** : **`b_starter_dashboard_role_template`** (API Laravel d'administration gérant l'authentification multi-rôles, la création de cours, les paiements, reçus et diplômes).
+
+---
+
+## 🛠️ FICHIERS FRONTEND À CONFIGURER & MODIFIER
+
+Pour connecter le **Dashboard Frontend (`f_starter_dashboard_role_template`)** à votre **Backend Laravel Admin (`b_starter_dashboard_role_template`)**, vous n'avez qu'à configurer/modifier ces 3 fichiers précis :
 
 ### 📁 FICHIER 1 : L'URL de votre API Backend
 * **Chemin du fichier** : `f_starter_dashboard_role_template/src/lib/api.ts`
